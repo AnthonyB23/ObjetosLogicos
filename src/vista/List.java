@@ -37,6 +37,10 @@ public class List extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListEntrada = new javax.swing.JList<>();
         btnAgregar = new javax.swing.JButton();
+        btnEliminarLista = new javax.swing.JButton();
+        btnEliminarPosicion = new javax.swing.JButton();
+        txtTextoPosicion = new javax.swing.JLabel();
+        txtPosicion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +49,11 @@ public class List extends javax.swing.JFrame {
         txtF1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtF1ActionPerformed(evt);
+            }
+        });
+        txtF1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtF1KeyReleased(evt);
             }
         });
 
@@ -57,24 +66,45 @@ public class List extends javax.swing.JFrame {
             }
         });
 
+        btnEliminarLista.setText("Eliminar Lista");
+        btnEliminarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarListaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarPosicion.setText("Eliminar por Posición");
+        btnEliminarPosicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPosicionActionPerformed(evt);
+            }
+        });
+
+        txtTextoPosicion.setText("Posición:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEliminarPosicion)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgregar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbltexto1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtF1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(btnAgregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminarLista))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(txtTextoPosicion)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtPosicion))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lbltexto1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtF1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,10 +114,18 @@ public class List extends javax.swing.JFrame {
                     .addComponent(txtF1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbltexto1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAgregar)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTextoPosicion)
+                    .addComponent(txtPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar)
+                    .addComponent(btnEliminarLista))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEliminarPosicion)
+                .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -103,6 +141,24 @@ public class List extends javax.swing.JFrame {
     private void txtF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtF1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtF1ActionPerformed
+
+    private void btnEliminarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarListaActionPerformed
+        // TODO add your handling code here:
+        hardware.removeAllElements();
+    }//GEN-LAST:event_btnEliminarListaActionPerformed
+
+    private void btnEliminarPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPosicionActionPerformed
+        // TODO add your handling code here:
+        int p = Integer.parseInt(txtPosicion.getText());
+        hardware.remove(p);
+    }//GEN-LAST:event_btnEliminarPosicionActionPerformed
+
+    private void txtF1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtF1KeyReleased
+        // TODO add your handling code here:
+        String entrada = txtF1.getText();
+        hardware.addElement(entrada);
+        txtF1.setText("");
+    }//GEN-LAST:event_txtF1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -141,9 +197,13 @@ public class List extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminarLista;
+    private javax.swing.JButton btnEliminarPosicion;
     private javax.swing.JList<String> jListEntrada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbltexto1;
     private javax.swing.JTextField txtF1;
+    private javax.swing.JTextField txtPosicion;
+    private javax.swing.JLabel txtTextoPosicion;
     // End of variables declaration//GEN-END:variables
 }
